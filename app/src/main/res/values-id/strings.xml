@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Dicosport by Arafin</string>
+    <string name="search_hint">Cari berita olahraga…</string>
+    <string name="no_news_found">Tidak ada berita ditemukan untuk kata kunci ini.</string>
+    <string name="no_internet">Tidak ada koneksi internet. Periksa jaringan Anda dan coba lagi.</string>
+    <string name="no_news_saved">Belum ada berita yang disimpan di favorit.</string>
+    <string name="try_again">Coba Lagi</string>
+    <string name="nav_favourite">Berita Favorit</string>
+    <string name="nav_language">Ubah Bahasa</string>
+    <string name="nav_theme">Mode Gelap / Terang</string>
+    <string name="nav_exit">Keluar Aplikasi</string>
+    <string name="lang_english">English</string>
+    <string name="lang_indonesian">Bahasa Indonesia</string>
+    <string name="lang_spanish">Español</string>
+    <string name="exit_title">Keluar Aplikasi</string>
+    <string name="exit_message">Apakah Anda yakin ingin menutup Dicosport?</string>
+    <string name="yes">Ya</string>
+    <string name="cancel">Batal</string>
+    <string name="title_favourite">Favorit</string>
+    <string name="stadium">Stadion:</string>
+    <string name="formed">Didirikan:</string>
+    <string name="related_news">Berita Terkait</string>
+</resources>

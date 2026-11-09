@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Dicosport by Arafin</string>
+    <string name="search_hint">Buscar noticias deportivas…</string>
+    <string name="no_news_found">No se encontraron noticias con esta palabra clave.</string>
+    <string name="no_internet">Sin conexión a internet. Comprueba tu red e inténtalo de nuevo.</string>
+    <string name="no_news_saved">No hay noticias guardadas en favoritos.</string>
+    <string name="try_again">Reintentar</string>
+    <string name="nav_favourite">Noticias Favoritas</string>
+    <string name="nav_language">Cambiar Idioma</string>
+    <string name="nav_theme">Modo Oscuro / Claro</string>
+    <string name="nav_exit">Cerrar Aplicación</string>
+    <string name="lang_english">English</string>
+    <string name="lang_indonesian">Bahasa Indonesia</string>
+    <string name="lang_spanish">Español</string>
+    <string name="exit_title">Cerrar Aplicación</string>
+    <string name="exit_message">¿Estás seguro de que deseas cerrar Dicosport?</string>
+    <string name="yes">Sí</string>
+    <string name="cancel">Cancelar</string>
+    <string name="title_favourite">Favoritos</string>
+    <string name="stadium">Estadio:</string>
+    <string name="formed">Fundación:</string>
+    <string name="related_news">Noticias Relacionadas</string>
+</resources>

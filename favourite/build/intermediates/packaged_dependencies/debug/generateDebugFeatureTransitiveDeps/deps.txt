@@ -1,0 +1,1 @@
+:favourite::debug;Capability: group='Dicosport by Arafin', name='favourite'

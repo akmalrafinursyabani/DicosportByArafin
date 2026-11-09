@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.example.favourite-mergeDebugResources-3:/layout/activity_favourite.xml",
+        "source": "com.example.favourite-main-6:/layout/activity_favourite.xml"
+    },
+    {
+        "merged": "com.example.favourite-mergeDebugResources-3:/layout/fragment_favourite.xml",
+        "source": "com.example.favourite-main-6:/layout/fragment_favourite.xml"
+    }
+]

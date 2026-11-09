@@ -1,0 +1,88 @@
+<resources>
+    <style name="Theme.DicosportbyArafin" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_onSecondary</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorError">@color/md_theme_error</item>
+        <item name="colorOnError">@color/md_theme_onError</item>
+        <item name="android:statusBarColor">@color/md_theme_primary</item>
+        <item name="android:navigationBarColor">@color/md_theme_surface</item>
+        <item name="android:windowBackground">@color/md_theme_background</item>
+        <item name="toolbarStyle">@style/Widget.Dicosport.Toolbar</item>
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.Dicosport.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.Dicosport.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.Dicosport.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Dicosport.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.Dicosport.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Dicosport.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Dicosport.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Dicosport.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.Dicosport.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Dicosport.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Dicosport.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Dicosport.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Dicosport.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.Dicosport.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.Dicosport.LabelSmall</item>
+    </style>
+
+    <style name="Widget.Dicosport.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/md_theme_onPrimary</item>
+        <item name="subtitleTextColor">@color/md_theme_onPrimary</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <!-- Serif Family for Headings, Headlines, and Titles (Alegreya) -->
+    <style name="TextAppearance.Dicosport.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+    <style name="TextAppearance.Dicosport.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+
+    <!-- Sans-Serif Family for Body and Labels (Plus Jakarta Sans) -->
+    <style name="TextAppearance.Dicosport.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/plusjakartasans</item>
+    </style>
+    <style name="TextAppearance.Dicosport.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/plusjakartasans</item>
+    </style>
+    <style name="TextAppearance.Dicosport.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/plusjakartasans</item>
+    </style>
+    <style name="TextAppearance.Dicosport.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/plusjakartasans</item>
+    </style>
+    <style name="TextAppearance.Dicosport.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/plusjakartasans</item>
+    </style>
+    <style name="TextAppearance.Dicosport.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/plusjakartasans</item>
+    </style>
+</resources>

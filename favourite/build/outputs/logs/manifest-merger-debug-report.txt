@@ -1,0 +1,51 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-20:12
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-20:12
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-20:12
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-20:12
+	package
+		INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
+	xmlns:dist
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:2:5-61
+	android:versionCode
+		INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:11-69
+dist:module
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:4:5-11:19
+	dist:instant
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:5:9-29
+	dist:title
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:6:9-45
+dist:delivery
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:7:9-9:25
+dist:install-time
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:8:13-34
+dist:fusing
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:10:9-44
+	dist:include
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:10:22-41
+application
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:13:5-18:19
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:13:5-18:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
+activity#com.example.favourite.FavouriteActivity
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:14:9-17:62
+	android:exported
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:16:13-37
+	android:theme
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:17:13-59
+	android:name
+		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:15:13-67
+uses-sdk
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml

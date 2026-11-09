@@ -1,0 +1,9 @@
+R_DEF: Internal format may change without notice
+local
+id appBarLayout
+id fragmentContainer
+id rvFavourite
+id toolbar
+id tvEmpty
+layout activity_favourite
+layout fragment_favourite

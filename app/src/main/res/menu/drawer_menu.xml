@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_favourite"
+        android:icon="@drawable/ic_drawer_favourite"
+        android:title="@string/nav_favourite" />
+    <item
+        android:id="@+id/nav_language"
+        android:icon="@drawable/ic_drawer_language"
+        android:title="@string/nav_language" />
+    <item
+        android:id="@+id/nav_theme"
+        android:icon="@drawable/ic_drawer_theme"
+        android:title="@string/nav_theme" />
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/ic_drawer_exit"
+        android:title="@string/nav_exit" />
+</menu>
