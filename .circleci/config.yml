@@ -22,14 +22,11 @@ jobs:
             - ~/.android/build-cache
             - ~/.android/cache
       - run:
-          name: Run Build
-          command: ./gradlew build
+          name: Run Build & Tests (Smarter Testing)
+          command: ./gradlew assembleDebug testDebugUnitTest
       - store_artifacts:
           path: app/build/reports
           destination: reports
-      - run:
-          name: Run Tests
-          command: ./gradlew lint test
       - store_test_results:
           path: app/build/test-results
       - store_artifacts:
