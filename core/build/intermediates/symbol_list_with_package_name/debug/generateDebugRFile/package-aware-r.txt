@@ -5,3 +5,4 @@ id tvCarouselTitle
 id tvTitle
 layout item_carousel
 layout item_news
+string app_name
