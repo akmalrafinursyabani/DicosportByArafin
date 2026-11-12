@@ -15,10 +15,12 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                style="@style/Widget.Dicosport.Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:titleTextColor="@color/background_dark" />
+                android:background="@color/toolbar_background_color"
+                app:titleTextColor="@color/toolbar_title_color"
+                app:navigationIconTint="@color/toolbar_icon_tint" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

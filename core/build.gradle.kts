@@ -34,6 +34,7 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 }
@@ -55,10 +56,12 @@ dependencies {
     implementation(libs.moshi)
     implementation(libs.okhttp.logging)
 
-    // Room
+    // Room & SQLCipher Encryption
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+    implementation("net.zetetic:android-database-sqlcipher:4.5.4")
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
 
     // Koin
     implementation(libs.koin.core)

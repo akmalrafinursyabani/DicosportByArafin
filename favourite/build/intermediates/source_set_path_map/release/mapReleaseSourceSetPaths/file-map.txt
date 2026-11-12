@@ -1,0 +1,7 @@
+com.example.favourite-pngs-0 C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\build\generated\res\pngs\release
+com.example.favourite-resValues-1 C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\build\generated\res\resValues\release
+com.example.favourite-packageReleaseResources-2 C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.example.favourite-packageReleaseResources-3 C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.example.favourite-release-4 C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\build\intermediates\merged_res\release\mergeReleaseResources
+com.example.favourite-main-5 C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\res
+com.example.favourite-release-6 C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\release\res

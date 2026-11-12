@@ -32,6 +32,7 @@ class DetailActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbar.navigationIcon?.setTint(androidx.core.content.ContextCompat.getColor(this, com.example.dicosportbyarafin.R.color.toolbar_icon_tint))
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         observeViewModel()
@@ -53,8 +54,14 @@ class DetailActivity : AppCompatActivity() {
                     it.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150).start()
                 }.start()
 
-                val currentFav = detailViewModel.isFavourite.value == true
-                detailViewModel.setFavourite(news, !currentFav)
+                val isCurrentlyFav = detailViewModel.isFavourite.value == true
+                if (isCurrentlyFav) {
+                    showRemoveBookmarkDialog(news) {
+                        detailViewModel.setFavourite(news, false)
+                    }
+                } else {
+                    detailViewModel.setFavourite(news, true)
+                }
             }
         }
 
@@ -114,6 +121,30 @@ class DetailActivity : AppCompatActivity() {
         } else {
             binding.fabBookmark.setImageResource(com.example.dicosportbyarafin.R.drawable.ic_bookmark_border)
         }
+    }
+
+    private fun showRemoveBookmarkDialog(newsItem: NewsUiModel, onConfirm: () -> Unit) {
+        val dialogView = layoutInflater.inflate(com.example.dicosportbyarafin.R.layout.dialog_remove_bookmark, null)
+        val tvRemoveTitle = dialogView.findViewById<android.widget.TextView>(com.example.dicosportbyarafin.R.id.tvRemoveTitle)
+        val btnCancel = dialogView.findViewById<com.google.android.material.button.MaterialButton>(com.example.dicosportbyarafin.R.id.btnCancel)
+        val btnConfirmDelete = dialogView.findViewById<com.google.android.material.button.MaterialButton>(com.example.dicosportbyarafin.R.id.btnConfirmDelete)
+
+        tvRemoveTitle.text = getString(com.example.dicosportbyarafin.R.string.remove_bookmark_title, newsItem.title)
+
+        val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setView(dialogView)
+            .create()
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnConfirmDelete.setOnClickListener {
+            onConfirm()
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     companion object {

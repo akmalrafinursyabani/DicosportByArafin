@@ -21,6 +21,7 @@ class FavouriteActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbar.navigationIcon?.setTint(androidx.core.content.ContextCompat.getColor(this, com.example.dicosportbyarafin.R.color.toolbar_icon_tint))
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         if (savedInstanceState == null) {

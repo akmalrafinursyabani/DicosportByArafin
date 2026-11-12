@@ -20,7 +20,8 @@
 
     <application
         android:debuggable="true"
-        android:extractNativeLibs="false" >
+        android:extractNativeLibs="false"
+        android:testOnly="true" >
         <activity
             android:name="com.example.favourite.FavouriteActivity"
             android:exported="false"

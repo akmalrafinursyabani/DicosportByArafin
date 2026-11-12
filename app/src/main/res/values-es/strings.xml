@@ -15,6 +15,8 @@
     <string name="exit_title">Cerrar Aplicación</string>
     <string name="exit_message">¿Estás seguro de que deseas cerrar Dicosport?</string>
     <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="remove_bookmark_title">¿Quitar %1$s de Marcadores?</string>
     <string name="cancel">Cancelar</string>
     <string name="title_favourite">Favoritos</string>
     <string name="stadium">Estadio:</string>

@@ -1,0 +1,7 @@
+com.example.dicosportbyarafin:layout/fragment_favourite = 0x80020001
+com.example.dicosportbyarafin:layout/activity_favourite = 0x80020000
+com.example.dicosportbyarafin:id/tvEmpty = 0x80010004
+com.example.dicosportbyarafin:id/toolbar = 0x80010003
+com.example.dicosportbyarafin:id/rvFavourite = 0x80010002
+com.example.dicosportbyarafin:id/fragmentContainer = 0x80010001
+com.example.dicosportbyarafin:id/appBarLayout = 0x80010000

@@ -1,0 +1,7 @@
+int id appBarLayout 0x80010000
+int id fragmentContainer 0x80010001
+int id rvFavourite 0x80010002
+int id toolbar 0x80010003
+int id tvEmpty 0x80010004
+int layout activity_favourite 0x80020000
+int layout fragment_favourite 0x80020001
