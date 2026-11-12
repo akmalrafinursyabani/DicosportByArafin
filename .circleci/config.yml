@@ -9,6 +9,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Make Gradle Wrapper Executable
+          command: chmod +x gradlew
+
       - restore_cache:
           key: v1-gradle-cache-{{ checksum "build.gradle.kts" }}-{{ checksum "app/build.gradle.kts" }}-{{ checksum "core/build.gradle.kts" }}
 
