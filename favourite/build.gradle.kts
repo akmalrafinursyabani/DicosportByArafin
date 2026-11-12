@@ -22,10 +22,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    lint {
-        checkReleaseBuilds = false
-        abortOnError = false
-    }
 }
 
 dependencies {
