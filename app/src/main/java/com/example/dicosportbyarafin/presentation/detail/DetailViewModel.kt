@@ -6,13 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.core.domain.model.NewsItem
+import com.example.core.domain.repository.Resource
 import com.example.core.domain.usecase.CheckFavouriteNewsUseCase
 import com.example.core.domain.usecase.GetEplNewsUseCase
 import com.example.core.domain.usecase.SetFavouriteNewsUseCase
-import com.example.core.domain.repository.Resource
 import com.example.dicosportbyarafin.presentation.model.NewsUiModel
 import com.example.dicosportbyarafin.presentation.model.toDomainModel
 import com.example.dicosportbyarafin.presentation.model.toUiModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -26,7 +27,16 @@ class DetailViewModel(
     private val _newsItem = MutableLiveData<NewsUiModel>()
     val newsItem: LiveData<NewsUiModel> = _newsItem
 
-    val isFavourite = checkFavouriteNewsUseCase(newsId).asLiveData()
+    private val _isFavourite = MutableLiveData<Boolean>()
+    val isFavourite: LiveData<Boolean> = _isFavourite
+
+    init {
+        viewModelScope.launch {
+            checkFavouriteNewsUseCase(newsId).collectLatest { fav ->
+                _isFavourite.value = fav
+            }
+        }
+    }
 
     val relatedNews: LiveData<List<NewsItem>> = getEplNewsUseCase().map { resource ->
         if (resource is Resource.Success) {
@@ -42,8 +52,11 @@ class DetailViewModel(
     }.asLiveData()
 
     fun setFavourite(newsUiModel: NewsUiModel, state: Boolean) {
+        _isFavourite.value = state
+        val updated = newsUiModel.copy(isFavourite = state)
+        _newsItem.value = updated
         viewModelScope.launch {
-            setFavouriteNewsUseCase(newsUiModel.toDomainModel(), state)
+            setFavouriteNewsUseCase(updated.toDomainModel(), state)
         }
     }
 }

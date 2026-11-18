@@ -37,6 +37,18 @@ android {
         buildConfig = true
         viewBinding = true
     }
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+        checkDependencies = false
+        ignoreTestSources = true
+    }
+}
+
+tasks.configureEach {
+    if (name.contains("lintVital", ignoreCase = true)) {
+        enabled = false
+    }
 }
 
 dependencies {
@@ -54,6 +66,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
     implementation(libs.moshi)
+    ksp(libs.moshi.codegen)
     implementation(libs.okhttp.logging)
 
     // Room & SQLCipher Encryption

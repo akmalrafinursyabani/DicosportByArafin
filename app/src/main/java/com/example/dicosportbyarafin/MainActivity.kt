@@ -3,6 +3,7 @@ package com.example.dicosportbyarafin
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import com.example.dicosportbyarafin.databinding.ActivityMainBinding
+import com.example.favourite.FavouriteActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -56,13 +58,7 @@ class MainActivity : AppCompatActivity() {
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_favourite -> {
-                    try {
-                        val intent =
-                            Intent(this, Class.forName("com.example.favourite.FavouriteActivity"))
-                        startActivity(intent)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+                    moveToFavouriteActivity()
                 }
 
                 R.id.nav_language -> {
@@ -108,6 +104,10 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun showThemeDialog() {
         val themes = arrayOf("Light", "Dark", "System Default")
         val modeValues = intArrayOf(
@@ -146,5 +146,10 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.cancel, null)
             .show()
+    }
+
+    private fun moveToFavouriteActivity() {
+        val intent = Intent(this, FavouriteActivity::class.java)
+        startActivity(intent)
     }
 }

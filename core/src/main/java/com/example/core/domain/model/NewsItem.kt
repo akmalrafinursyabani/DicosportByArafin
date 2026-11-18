@@ -9,5 +9,5 @@ data class NewsItem(
     val stadium: String,
     val formedYear: String,
     val league: String,
-    var isFavourite: Boolean = false
+    val isFavourite: Boolean = false
 )

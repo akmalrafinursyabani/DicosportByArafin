@@ -1,9 +1,74 @@
 # Consumer ProGuard Rules for Core Library
 
--keep class com.example.core.domain.model.** { *; }
+##---------------Begin: proguard configuration for SQLCipher ----------
+-keep,includedescriptorclasses class net.sqlcipher.** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher.** { *; }
+-dontwarn net.sqlcipher.**
+
+##---------------Begin: proguard configuration for Moshi / JSON Serialization ----------
+# Generic type and annotation retention
+-keepattributes Signature, InnerClasses, EnclosingMethod, *Annotation*, ElementValueAttribute, RuntimeVisibleAnnotations, RuntimeInvisibleAnnotations, RuntimeVisibleParameterAnnotations, RuntimeInvisibleParameterAnnotations
+
+# DTOs, Entities, and Domain Models
 -keep class com.example.core.data.source.remote.response.** { *; }
 -keep class com.example.core.data.source.local.entity.** { *; }
+-keep class com.example.core.domain.model.** { *; }
 
--keep class net.sqlcipher.** { *; }
--keep class net.sqlcipher.database.** { *; }
--dontwarn net.sqlcipher.**
+# Moshi specific rules
+-dontwarn com.squareup.moshi.**
+-keep class com.squareup.moshi.** { *; }
+-keepclassmembers class * {
+    @com.squareup.moshi.* <fields>;
+    @com.squareup.moshi.* <methods>;
+}
+-keep @com.squareup.moshi.JsonClass class * { *; }
+-keep class *JsonAdapter {
+    public <init>(...);
+}
+
+##---------------Begin: proguard configuration for Retrofit ----------
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations, RuntimeInvisibleAnnotations, RuntimeInvisibleParameterAnnotations
+
+# Keep Retrofit API interfaces & methods intact for suspend functions
+-keep interface * {
+    @retrofit2.http.* <methods>;
+}
+-keep interface com.example.core.data.source.remote.network.ApiService { *; }
+-keep class retrofit2.** { *; }
+
+-dontwarn retrofit2.**
+-dontwarn retrofit2.KotlinExtensions
+-dontwarn retrofit2.KotlinExtensions$*
+-dontwarn kotlinx.**
+
+# Retain Kotlin Continuation for suspend function reflection
+-keep class kotlin.coroutines.Continuation { *; }
+
+##---------------Begin: proguard configuration for Room ----------
+-dontwarn androidx.room.**
+-keep class * extends androidx.room.RoomDatabase { *; }
+-keep class * extends androidx.room.RoomOpenHelper { *; }
+-keep class * extends androidx.room.migration.Migration { *; }
+-keep class **.*_Impl { *; }
+-keepclassmembers class **.*_Impl { *; }
+-keep @androidx.room.Dao interface * { *; }
+-keepclassmembers interface * {
+    @androidx.room.* <methods>;
+}
+-keep class com.example.core.data.source.local.room.** { *; }
+-keep class com.example.core.data.source.local.entity.** { *; }
+-keepclassmembers class com.example.core.data.source.local.entity.** { *; }
+
+##---------------Begin: proguard configuration for UseCases & Repositories ----------
+-keep class com.example.core.domain.usecase.** { *; }
+-keepclassmembers class com.example.core.domain.usecase.** { *; }
+-keep class com.example.core.domain.repository.** { *; }
+-keep class com.example.core.data.NewsRepositoryImpl { *; }
+
+##---------------Begin: proguard configuration for Koin & ViewModels ----------
+-dontwarn org.koin.**
+-keep class org.koin.** { *; }
+-keep class * extends androidx.lifecycle.ViewModel {
+    public <init>(...);
+}

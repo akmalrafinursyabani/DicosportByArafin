@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NewsDao {
-    @Query("SELECT * FROM news")
+    @Query("SELECT * FROM news ORDER BY title ASC")
     fun getAllNews(): Flow<List<NewsEntity>>
 
-    @Query("SELECT * FROM news WHERE isFavourite = 1")
+    @Query("SELECT * FROM news WHERE isFavourite = 1 ORDER BY title ASC")
     fun getFavouriteNews(): Flow<List<NewsEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

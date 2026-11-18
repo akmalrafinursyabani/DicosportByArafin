@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.core.ui.NewsAdapter
+import com.example.dicosportbyarafin.R
 import com.example.dicosportbyarafin.databinding.ActivityDetailBinding
 import com.example.dicosportbyarafin.presentation.model.NewsUiModel
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -35,6 +37,15 @@ class DetailActivity : AppCompatActivity() {
         binding.toolbar.navigationIcon?.setTint(androidx.core.content.ContextCompat.getColor(this, com.example.dicosportbyarafin.R.color.toolbar_icon_tint))
         binding.toolbar.setNavigationOnClickListener { finish() }
 
+        val relatedAdapter = NewsAdapter { related ->
+            val intent = android.content.Intent(this, DetailActivity::class.java).apply {
+                putExtra(EXTRA_NEWS_ID, related.id)
+            }
+            startActivity(intent)
+        }
+        binding.rvRelated.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRelated.adapter = relatedAdapter
+
         observeViewModel()
     }
 
@@ -46,6 +57,7 @@ class DetailActivity : AppCompatActivity() {
 
         detailViewModel.isFavourite.observe(this) { isFav ->
             updateBookmarkIcon(isFav)
+            currentNewsUiModel = currentNewsUiModel?.copy(isFavourite = isFav)
         }
 
         binding.fabBookmark.setOnClickListener {
@@ -58,9 +70,11 @@ class DetailActivity : AppCompatActivity() {
                 if (isCurrentlyFav) {
                     showRemoveBookmarkDialog(news) {
                         detailViewModel.setFavourite(news, false)
+                        Snackbar.make(binding.root, R.string.bookmark_removed, Snackbar.LENGTH_SHORT).show()
                     }
                 } else {
                     detailViewModel.setFavourite(news, true)
+                    Snackbar.make(binding.root, R.string.bookmark_added, Snackbar.LENGTH_SHORT).show()
                 }
             }
         }
@@ -88,16 +102,6 @@ class DetailActivity : AppCompatActivity() {
         binding.ivDetailImage.setOnClickListener {
             showZoomImageDialog(imageUrl)
         }
-
-        val relatedAdapter = NewsAdapter { related ->
-            val intent = android.content.Intent(this, DetailActivity::class.java).apply {
-                putExtra(EXTRA_NEWS_ID, related.id)
-            }
-            startActivity(intent)
-        }
-
-        binding.rvRelated.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvRelated.adapter = relatedAdapter
     }
 
     private fun showZoomImageDialog(imageUrl: String) {

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.ui.NewsAdapter
-import com.example.dicosportbyarafin.presentation.detail.DetailActivity
 import com.example.favourite.databinding.FragmentFavouriteBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,8 +28,8 @@ class FavouriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = NewsAdapter { news ->
-            val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-                putExtra(DetailActivity.EXTRA_NEWS_ID, news.id)
+            val intent = Intent().setClassName(requireContext(), "com.example.dicosportbyarafin.presentation.detail.DetailActivity").apply {
+                putExtra("extra_news_id", news.id)
             }
             startActivity(intent)
         }
@@ -38,7 +37,10 @@ class FavouriteFragment : Fragment() {
         binding.rvFavourite.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFavourite.adapter = adapter
 
+        binding.progressIndicator.visibility = View.VISIBLE
+
         favouriteViewModel.favouriteNews.observe(viewLifecycleOwner) { list ->
+            binding.progressIndicator.visibility = View.GONE
             adapter.submitList(list)
             if (list.isNullOrEmpty()) {
                 binding.tvEmpty.visibility = View.VISIBLE

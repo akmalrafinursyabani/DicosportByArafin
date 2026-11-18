@@ -10,6 +10,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
 class DicosportApp : Application() {
+
     override fun onCreate() {
         super.onCreate()
         

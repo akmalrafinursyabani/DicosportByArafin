@@ -28,6 +28,6 @@
       applicationId="com.example.core"
       generatedSourceFolders="build\generated\ksp\release\java;build\generated\ksp\release\kotlin;build\generated\ap_generated_sources\release\out;build\generated\source\buildConfig\release;build\generated\data_binding_base_class_source_out\release\out"
       generatedResourceFolders="build\generated\res\resValues\release"
-      desugaredMethodsFiles="C:\Users\akmal\.gradle\caches\9.6.0\transforms\f71f8661a34eed5e7fc274ac58b7e97e\transformed\D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="C:\Users\akmal\.gradle\caches\9.6.0\transforms\aefd73339a9db6e5fdfee89da215e8e9\transformed\D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

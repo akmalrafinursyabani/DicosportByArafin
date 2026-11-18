@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/favourite" />
           </set>
         </option>
+        <option name="myGradleHome" value="C:\gradle\gradle-8.2" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -30,17 +30,16 @@
 23    <application
 23-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:13:5-18:19
 24        android:debuggable="true"
-25        android:extractNativeLibs="false"
-26        android:testOnly="true" >
-27        <activity
-27-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:14:9-17:62
-28            android:name="com.example.favourite.FavouriteActivity"
-28-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:15:13-67
-29            android:exported="false"
-29-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:16:13-37
-30            android:splitName="favourite"
-31            android:theme="@style/Theme.DicosportbyArafin" />
-31-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:17:13-59
-32    </application>
-33
-34</manifest>
+25        android:extractNativeLibs="false" >
+26        <activity
+26-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:14:9-17:62
+27            android:name="com.example.favourite.FavouriteActivity"
+27-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:15:13-67
+28            android:exported="false"
+28-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:16:13-37
+29            android:splitName="favourite"
+30            android:theme="@style/Theme.DicosportbyArafin" />
+30-->C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:17:13-59
+31    </application>
+32
+33</manifest>

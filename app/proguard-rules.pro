@@ -1,37 +1,47 @@
-# ProGuard / R8 Rules for Dicosport by Arafin
+# ProGuard / R8 Rules for Dicosport App
 
-# Keep Domain Models, DTOs, Entities, and Presentation Models
--keep class com.example.core.domain.model.** { *; }
--keep class com.example.core.data.source.remote.response.** { *; }
--keep class com.example.core.data.source.local.entity.** { *; }
+##---------------Begin: proguard configuration for Attributes & Models ----------
+-keepattributes Signature, InnerClasses, EnclosingMethod, *Annotation*, ElementValueAttribute
+
+# Presentation Models
 -keep class com.example.dicosportbyarafin.presentation.model.** { *; }
 
-# Retrofit & Moshi
--keepclassmembers class * {
-    @com.squareup.moshi.* <fields>;
-    @com.squareup.moshi.* <methods>;
-}
+##---------------Begin: proguard configuration for Favourite Module ----------
+-keep class com.example.favourite.** { *; }
+-keepclassmembers class com.example.favourite.** { *; }
+
+##---------------Begin: proguard configuration for ViewBinding ----------
+-keep class **.databinding.** { *; }
+
+##---------------Begin: proguard configuration for Retrofit & Moshi ----------
 -dontwarn retrofit2.**
--keep class retrofit2.** { *; }
--keepclasseswithmembers class * {
+-dontwarn com.squareup.moshi.**
+
+# Keep Retrofit API interfaces intact for suspend function reflection
+-keep interface * {
     @retrofit2.http.* <methods>;
 }
 
-# SQLCipher & Room
--keep class net.sqlcipher.** { *; }
--keep class net.sqlcipher.database.** { *; }
--keep class androidx.room.** { *; }
--dontwarn net.sqlcipher.**
+##---------------Begin: proguard configuration for Koin ----------
+-dontwarn org.koin.**
+-keep class org.koin.** { *; }
 
-# Koin
--keep class io.insertkoin.** { *; }
--dontwarn io.insertkoin.**
+##---------------Begin: proguard configuration for Glide ----------
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep class * extends com.bumptech.glide.module.AppGlideModule {
+    <init>(...);
+}
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+    **[] $VALUES;
+    public *;
+}
+-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+    *** rewind();
+}
 
-# Glide
--keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep class com.bumptech.glide.** { *; }
+##---------------Begin: proguard configuration for Lottie & Parcelable ----------
+-keep class com.airbnb.lottie.** { *; }
 
-# Parcelable
 -keep class * implements android.os.Parcelable {
     public static final android.os.Parcelable$Creator *;
 }

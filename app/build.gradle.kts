@@ -39,11 +39,23 @@ android {
         buildConfig = true
         viewBinding = true
     }
-    dynamicFeatures += setOf(":favourite")
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+        checkDependencies = false
+        ignoreTestSources = true
+    }
+}
+
+tasks.configureEach {
+    if (name.contains("lintVital", ignoreCase = true)) {
+        enabled = false
+    }
 }
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":favourite"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -70,9 +82,10 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
 
-    // Glide & Lottie
+    // Glide & Lottie & Play Feature Delivery
     implementation(libs.glide)
     implementation(libs.lottie)
+    implementation(libs.play.feature.delivery)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

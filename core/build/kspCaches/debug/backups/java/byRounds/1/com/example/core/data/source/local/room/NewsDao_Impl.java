@@ -168,7 +168,7 @@ public final class NewsDao_Impl implements NewsDao {
 
   @Override
   public Flow<List<NewsEntity>> getAllNews() {
-    final String _sql = "SELECT * FROM news";
+    final String _sql = "SELECT * FROM news ORDER BY title ASC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     return CoroutinesRoom.createFlow(__db, false, new String[] {"news"}, new Callable<List<NewsEntity>>() {
       @Override
@@ -231,7 +231,7 @@ public final class NewsDao_Impl implements NewsDao {
 
   @Override
   public Flow<List<NewsEntity>> getFavouriteNews() {
-    final String _sql = "SELECT * FROM news WHERE isFavourite = 1";
+    final String _sql = "SELECT * FROM news WHERE isFavourite = 1 ORDER BY title ASC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     return CoroutinesRoom.createFlow(__db, false, new String[] {"news"}, new Callable<List<NewsEntity>>() {
       @Override

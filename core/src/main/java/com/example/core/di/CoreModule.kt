@@ -74,34 +74,33 @@ val databaseModule = module {
         val context = androidContext()
         SQLiteDatabase.loadLibs(context)
         val passphrase = KeystoreManager.getPassphrase(context)
-        val factory = SupportFactory(passphrase)
-        val db = try {
-            val database = Room.databaseBuilder(
-                context,
-                NewsDatabase::class.java,
-                "dicosport.db"
-            )
-                .openHelperFactory(factory)
-                .fallbackToDestructiveMigration()
-                .build()
-            database.openHelper.writableDatabase
-            database
-        } catch (e: Exception) {
-            Log.e("Dicosport", "Old unencrypted database reset for SQLCipher encryption: ${e.message}")
-            context.deleteDatabase("dicosport.db")
-            val database = Room.databaseBuilder(
-                context,
-                NewsDatabase::class.java,
-                "dicosport.db"
-            )
-                .openHelperFactory(factory)
-                .fallbackToDestructiveMigration()
-                .build()
-            database.openHelper.writableDatabase
-            database
+
+        // Verify if pre-existing database file is readable with the current passphrase
+        val dbFile = context.getDatabasePath("dicosport.db")
+        if (dbFile.exists()) {
+            try {
+                val testDb = SQLiteDatabase.openDatabase(
+                    dbFile.absolutePath,
+                    String(passphrase, Charsets.UTF_8),
+                    null,
+                    SQLiteDatabase.OPEN_READWRITE
+                )
+                testDb.close()
+            } catch (e: Exception) {
+                Log.e("Dicosport", "Pre-existing database file is incompatible or unencrypted, resetting: ${e.message}")
+                context.deleteDatabase("dicosport.db")
+            }
         }
-        Log.d("Dicosport", "SQLCipher Encrypted Room Database initialized successfully with Android Keystore passphrase.")
-        db
+
+        val factory = SupportFactory(passphrase)
+        Room.databaseBuilder(
+            context,
+            NewsDatabase::class.java,
+            "dicosport.db"
+        )
+            .openHelperFactory(factory)
+            .fallbackToDestructiveMigration()
+            .build()
     }
     single { get<NewsDatabase>().newsDao() }
 }

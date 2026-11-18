@@ -1,7 +1,9 @@
 R_DEF: Internal format may change without notice
 local
+color toolbar_icon_tint
 id appBarLayout
 id fragmentContainer
+id progressIndicator
 id rvFavourite
 id toolbar
 id tvEmpty

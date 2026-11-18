@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.favourite.R;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -21,14 +22,19 @@ public final class FragmentFavouriteBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final CircularProgressIndicator progressIndicator;
+
+  @NonNull
   public final RecyclerView rvFavourite;
 
   @NonNull
   public final TextView tvEmpty;
 
   private FragmentFavouriteBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView rvFavourite, @NonNull TextView tvEmpty) {
+      @NonNull CircularProgressIndicator progressIndicator, @NonNull RecyclerView rvFavourite,
+      @NonNull TextView tvEmpty) {
     this.rootView = rootView;
+    this.progressIndicator = progressIndicator;
     this.rvFavourite = rvFavourite;
     this.tvEmpty = tvEmpty;
   }
@@ -60,6 +66,12 @@ public final class FragmentFavouriteBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.progressIndicator;
+      CircularProgressIndicator progressIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (progressIndicator == null) {
+        break missingId;
+      }
+
       id = R.id.rvFavourite;
       RecyclerView rvFavourite = ViewBindings.findChildViewById(rootView, id);
       if (rvFavourite == null) {
@@ -72,7 +84,8 @@ public final class FragmentFavouriteBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentFavouriteBinding((ConstraintLayout) rootView, rvFavourite, tvEmpty);
+      return new FragmentFavouriteBinding((ConstraintLayout) rootView, progressIndicator,
+          rvFavourite, tvEmpty);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

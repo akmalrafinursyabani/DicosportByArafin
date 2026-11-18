@@ -26,29 +26,10 @@ class NewsRepositoryImpl(
 
     override fun getEplNews(): Flow<Resource<List<NewsItem>>> = flow {
         emit(Resource.Loading)
-        
-        // 1. Emit local cache first (Offline-first approach)
-        val localData = newsDao.getAllNews().map { entities ->
-            entities.map { entity ->
-                NewsItem(
-                    id = entity.id,
-                    title = entity.title,
-                    description = entity.description,
-                    imageUrl = sanitizeUrl(entity.imageUrl),
-                    badgeUrl = sanitizeUrl(entity.badgeUrl),
-                    stadium = entity.stadium,
-                    formedYear = entity.formedYear,
-                    league = entity.league,
-                    isFavourite = entity.isFavourite
-                )
-            }
-        }
 
-        // Try fetching from network and updating cache
         try {
             val response = apiService.getEplTeams()
             val teamList = response.teams ?: emptyList()
-            Log.d("Dicosport", "Fetched ${teamList.size} teams from API")
             if (teamList.isNotEmpty()) {
                 val currentFavourites = newsDao.getFavouriteNews().first().map { it.id }.toSet()
                 val newsEntities = teamList.map { team ->
@@ -61,7 +42,6 @@ class NewsRepositoryImpl(
                     val imageUrl = sanitizeUrl(imageUrlRaw)
                     val badgeUrl = sanitizeUrl(team.strBadge ?: team.strLogo)
                     val id = team.idTeam ?: ""
-                    Log.d("Dicosport", "Team: ${team.strTeam}, banner: $banner, imageUrl: $imageUrl")
                     NewsEntity(
                         id = id,
                         title = team.strTeam ?: "Unknown Team",
@@ -79,15 +59,30 @@ class NewsRepositoryImpl(
             }
         } catch (e: Exception) {
             Log.e("Dicosport", "Error fetching teams from API: ${e.localizedMessage}", e)
-            val cached = localData.first()
-            if (cached.isEmpty()) {
-                emit(Resource.Error(e.localizedMessage ?: "No internet connection and no cached data available."))
-                return@flow
+        }
+
+        val localData = newsDao.getAllNews().map { entities ->
+            entities.map { entity ->
+                NewsItem(
+                    id = entity.id,
+                    title = entity.title,
+                    description = entity.description,
+                    imageUrl = sanitizeUrl(entity.imageUrl),
+                    badgeUrl = sanitizeUrl(entity.badgeUrl),
+                    stadium = entity.stadium,
+                    formedYear = entity.formedYear,
+                    league = entity.league,
+                    isFavourite = entity.isFavourite
+                )
             }
         }
 
-        // Emit final result from local database (Single Source of Truth)
-        emitAll(localData.map { Resource.Success(it) })
+        val firstCached = localData.first()
+        if (firstCached.isEmpty()) {
+            emit(Resource.Error("No internet connection and no cached data available."))
+        } else {
+            emitAll(localData.map { Resource.Success(it) })
+        }
     }
 
     override fun getFavouriteNews(): Flow<List<NewsItem>> {
@@ -109,7 +104,6 @@ class NewsRepositoryImpl(
     }
 
     override suspend fun setFavouriteNews(newsItem: NewsItem, state: Boolean) {
-        newsDao.updateFavouriteStatus(newsItem.id, state)
         val entity = NewsEntity(
             id = newsItem.id,
             title = newsItem.title,
@@ -122,11 +116,8 @@ class NewsRepositoryImpl(
             isFavourite = state,
             isCached = true
         )
-        try {
-            newsDao.updateNews(entity)
-        } catch (_: Exception) {
-            newsDao.insertNews(listOf(entity))
-        }
+        newsDao.insertNews(listOf(entity))
+        newsDao.updateFavouriteStatus(newsItem.id, state)
     }
 
     override fun isFavouriteNews(id: String): Flow<Boolean> {
