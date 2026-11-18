@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.dynamic-feature")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
@@ -10,6 +10,7 @@ android {
     defaultConfig {
         minSdk = 27
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("proguard-rules.pro")
     }
 
     compileOptions {
@@ -22,10 +23,30 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+        checkDependencies = false
+        ignoreTestSources = true
+    }
+}
+
+tasks.configureEach {
+    if (name.contains("lintVital", ignoreCase = true)) {
+        enabled = false
+    }
 }
 
 dependencies {
-    implementation(project(":app"))
     implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)

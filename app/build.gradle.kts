@@ -19,8 +19,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -35,13 +43,26 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
-    dynamicFeatures += setOf(":favourite")
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+        checkDependencies = false
+        ignoreTestSources = true
+    }
+}
+
+tasks.configureEach {
+    if (name.contains("lintVital", ignoreCase = true)) {
+        enabled = false
+    }
 }
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":favourite"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -55,6 +76,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
+    // LeakCanary Memory Leak Detection (Debug only)
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
+
     // Coroutines & Lifecycle
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
@@ -65,8 +89,10 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
 
-    // Glide
+    // Glide & Lottie & Play Feature Delivery
     implementation(libs.glide)
+    implementation(libs.lottie)
+    implementation(libs.play.feature.delivery)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

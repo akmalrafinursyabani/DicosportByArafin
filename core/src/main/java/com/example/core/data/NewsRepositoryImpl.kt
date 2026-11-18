@@ -24,10 +24,66 @@ class NewsRepositoryImpl(
         return fixed
     }
 
+    private fun getLocalizedDescription(team: com.example.core.data.source.remote.response.TeamDto): String {
+        val appLocales = androidx.appcompat.app.AppCompatDelegate.getApplicationLocales()
+        val locale = if (!appLocales.isEmpty) appLocales.get(0) else java.util.Locale.getDefault()
+        val language = locale?.language?.lowercase() ?: "en"
+
+        val desc = when (language) {
+            "zh" -> team.strDescriptionCN
+            "fr" -> team.strDescriptionFR
+            "es" -> team.strDescriptionES
+            "de" -> team.strDescriptionDE
+            "it" -> team.strDescriptionIT
+            "ja" -> team.strDescriptionJP
+            "ru" -> team.strDescriptionRU
+            "pt" -> team.strDescriptionPT
+            "nl" -> team.strDescriptionNL
+            "pl" -> team.strDescriptionPL
+            else -> team.strDescriptionEN
+        }
+
+        return if (!desc.isNullOrBlank()) desc else (team.strDescriptionEN ?: "No description available for this sports news item.")
+    }
+
     override fun getEplNews(): Flow<Resource<List<NewsItem>>> = flow {
         emit(Resource.Loading)
-        
-        // 1. Emit local cache first (Offline-first approach)
+
+        try {
+            val response = apiService.getEplTeams()
+            val teamList = response.teams ?: emptyList()
+            if (teamList.isNotEmpty()) {
+                val currentFavourites = newsDao.getFavouriteNews().first().map { it.id }.toSet()
+                val newsEntities = teamList.map { team ->
+                    val banner = team.strBanner ?: team.strFanart1 ?: team.strBadge ?: team.strLogo ?: ""
+                    val imageUrlRaw = if (banner.isNotBlank()) {
+                        if (!banner.endsWith("/medium")) "$banner/medium" else banner
+                    } else {
+                        ""
+                    }
+                    val imageUrl = sanitizeUrl(imageUrlRaw)
+                    val badgeUrl = sanitizeUrl(team.strBadge ?: team.strLogo)
+                    val id = team.idTeam ?: ""
+                    val description = getLocalizedDescription(team)
+                    NewsEntity(
+                        id = id,
+                        title = team.strTeam ?: "Unknown Team",
+                        description = description,
+                        imageUrl = imageUrl,
+                        badgeUrl = badgeUrl,
+                        stadium = team.strStadium ?: "Unknown Stadium",
+                        formedYear = team.intFormedYear ?: "N/A",
+                        league = team.strLeague ?: "English Premier League",
+                        isFavourite = currentFavourites.contains(id),
+                        isCached = true
+                    )
+                }
+                newsDao.insertNews(newsEntities)
+            }
+        } catch (e: Exception) {
+            Log.e("Dicosport", "Error fetching teams from API: ${e.localizedMessage}", e)
+        }
+
         val localData = newsDao.getAllNews().map { entities ->
             entities.map { entity ->
                 NewsItem(
@@ -44,50 +100,12 @@ class NewsRepositoryImpl(
             }
         }
 
-        // Try fetching from network and updating cache
-        try {
-            val response = apiService.getEplTeams()
-            val teamList = response.teams ?: emptyList()
-            Log.d("Dicosport", "Fetched ${teamList.size} teams from API")
-            if (teamList.isNotEmpty()) {
-                val currentFavourites = newsDao.getFavouriteNews().first().map { it.id }.toSet()
-                val newsEntities = teamList.map { team ->
-                    val banner = team.strBanner ?: team.strFanart1 ?: team.strBadge ?: team.strLogo ?: ""
-                    val imageUrlRaw = if (banner.isNotBlank()) {
-                        if (!banner.endsWith("/medium")) "$banner/medium" else banner
-                    } else {
-                        ""
-                    }
-                    val imageUrl = sanitizeUrl(imageUrlRaw)
-                    val badgeUrl = sanitizeUrl(team.strBadge ?: team.strLogo)
-                    val id = team.idTeam ?: ""
-                    Log.d("Dicosport", "Team: ${team.strTeam}, banner: $banner, imageUrl: $imageUrl")
-                    NewsEntity(
-                        id = id,
-                        title = team.strTeam ?: "Unknown Team",
-                        description = team.strDescriptionEN ?: "No description available for this sports news item.",
-                        imageUrl = imageUrl,
-                        badgeUrl = badgeUrl,
-                        stadium = team.strStadium ?: "Unknown Stadium",
-                        formedYear = team.intFormedYear ?: "N/A",
-                        league = team.strLeague ?: "English Premier League",
-                        isFavourite = currentFavourites.contains(id),
-                        isCached = true
-                    )
-                }
-                newsDao.insertNews(newsEntities)
-            }
-        } catch (e: Exception) {
-            Log.e("Dicosport", "Error fetching teams from API: ${e.localizedMessage}", e)
-            val cached = localData.first()
-            if (cached.isEmpty()) {
-                emit(Resource.Error(e.localizedMessage ?: "No internet connection and no cached data available."))
-                return@flow
-            }
+        val firstCached = localData.first()
+        if (firstCached.isEmpty()) {
+            emit(Resource.Error("No internet connection and no cached data available."))
+        } else {
+            emitAll(localData.map { Resource.Success(it) })
         }
-
-        // Emit final result from local database (Single Source of Truth)
-        emitAll(localData.map { Resource.Success(it) })
     }
 
     override fun getFavouriteNews(): Flow<List<NewsItem>> {
@@ -109,7 +127,6 @@ class NewsRepositoryImpl(
     }
 
     override suspend fun setFavouriteNews(newsItem: NewsItem, state: Boolean) {
-        newsDao.updateFavouriteStatus(newsItem.id, state)
         val entity = NewsEntity(
             id = newsItem.id,
             title = newsItem.title,
@@ -122,11 +139,8 @@ class NewsRepositoryImpl(
             isFavourite = state,
             isCached = true
         )
-        try {
-            newsDao.updateNews(entity)
-        } catch (_: Exception) {
-            newsDao.insertNews(listOf(entity))
-        }
+        newsDao.insertNews(listOf(entity))
+        newsDao.updateFavouriteStatus(newsItem.id, state)
     }
 
     override fun isFavouriteNews(id: String): Flow<Boolean> {

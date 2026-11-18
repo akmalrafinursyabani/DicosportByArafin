@@ -21,12 +21,13 @@ class FavouriteActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbar.navigationIcon?.setTint(androidx.core.content.ContextCompat.getColor(this, R.color.toolbar_icon_tint))
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, FavouriteFragment())
                 .commit()
-            }
+        }
     }
 }

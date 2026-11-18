@@ -1,0 +1,10 @@
+R_DEF: Internal format may change without notice
+local
+color toolbar_icon_tint
+id ivCarouselImage
+id ivThumbnail
+id tvCarouselTitle
+id tvTitle
+layout item_carousel
+layout item_news
+string app_name

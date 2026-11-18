@@ -1,9 +1,16 @@
 R_DEF: Internal format may change without notice
 local
+color toolbar_background_color
+color toolbar_icon_tint
+color toolbar_title_color
 id appBarLayout
 id fragmentContainer
+id progressIndicator
 id rvFavourite
 id toolbar
 id tvEmpty
 layout activity_favourite
 layout fragment_favourite
+string no_news_saved
+string title_favourite
+style Widget.Dicosport.Toolbar

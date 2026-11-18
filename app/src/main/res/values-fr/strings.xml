@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Dicosport by Arafin</string>
+    <string name="search_hint">Rechercher des actualités sportives…</string>
+    <string name="no_internet">Aucune connexion Internet. Veuillez vérifier votre réseau et réessayer.</string>
+    <string name="no_news_saved">Aucune actualité enregistrée dans les favoris pour le moment.</string>
+    <string name="try_again">Réessayer</string>
+    <string name="nav_favourite">Actualités Favorites</string>
+    <string name="nav_language">Changer de langue</string>
+    <string name="nav_theme">Mode Sombre / Clair</string>
+    <string name="nav_exit">Fermer l\'application</string>
+    <string name="exit_title">Quitter l\'application</string>
+    <string name="exit_message">Êtes-vous sûr de vouloir fermer Dicosport ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="remove_bookmark_title">Supprimer %1$s des favoris ?</string>
+    <string name="cancel">Annuler</string>
+    <string name="title_favourite">Favoris</string>
+    <string name="related_news">Actualités Similaires</string>
+    <string name="bookmark_added">Ajouté aux favoris</string>
+    <string name="bookmark_removed">Retiré des favoris</string>
+</resources>

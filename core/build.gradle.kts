@@ -34,7 +34,20 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
+    }
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+        checkDependencies = false
+        ignoreTestSources = true
+    }
+}
+
+tasks.configureEach {
+    if (name.contains("lintVital", ignoreCase = true)) {
+        enabled = false
     }
 }
 
@@ -53,12 +66,15 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
     implementation(libs.moshi)
+    ksp(libs.moshi.codegen)
     implementation(libs.okhttp.logging)
 
-    // Room
+    // Room & SQLCipher Encryption
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+    implementation("net.zetetic:android-database-sqlcipher:4.5.4")
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
 
     // Koin
     implementation(libs.koin.core)

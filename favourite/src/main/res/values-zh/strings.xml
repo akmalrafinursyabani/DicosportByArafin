@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_favourite">收藏</string>
+    <string name="no_news_saved">暂无收藏的新闻。</string>
+</resources>
