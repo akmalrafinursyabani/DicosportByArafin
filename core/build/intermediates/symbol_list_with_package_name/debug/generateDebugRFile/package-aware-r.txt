@@ -1,4 +1,5 @@
 com.example.core
+color toolbar_icon_tint
 id ivCarouselImage
 id ivThumbnail
 id tvCarouselTitle

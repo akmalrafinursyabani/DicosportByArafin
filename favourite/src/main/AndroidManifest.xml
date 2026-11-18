@@ -3,8 +3,7 @@
     <application>
         <activity
             android:name="com.example.favourite.FavouriteActivity"
-            android:exported="false"
-            android:theme="@style/Theme.DicosportbyArafin" />
+            android:exported="false" />
     </application>
 
 </manifest>

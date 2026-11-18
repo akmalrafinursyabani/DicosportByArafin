@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Dicosport.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/toolbar_background_color</item>
+        <item name="titleTextColor">@color/toolbar_title_color</item>
+    </style>
+</resources>

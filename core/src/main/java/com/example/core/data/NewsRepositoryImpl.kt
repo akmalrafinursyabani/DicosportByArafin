@@ -24,6 +24,28 @@ class NewsRepositoryImpl(
         return fixed
     }
 
+    private fun getLocalizedDescription(team: com.example.core.data.source.remote.response.TeamDto): String {
+        val appLocales = androidx.appcompat.app.AppCompatDelegate.getApplicationLocales()
+        val locale = if (!appLocales.isEmpty) appLocales.get(0) else java.util.Locale.getDefault()
+        val language = locale?.language?.lowercase() ?: "en"
+
+        val desc = when (language) {
+            "zh" -> team.strDescriptionCN
+            "fr" -> team.strDescriptionFR
+            "es" -> team.strDescriptionES
+            "de" -> team.strDescriptionDE
+            "it" -> team.strDescriptionIT
+            "ja" -> team.strDescriptionJP
+            "ru" -> team.strDescriptionRU
+            "pt" -> team.strDescriptionPT
+            "nl" -> team.strDescriptionNL
+            "pl" -> team.strDescriptionPL
+            else -> team.strDescriptionEN
+        }
+
+        return if (!desc.isNullOrBlank()) desc else (team.strDescriptionEN ?: "No description available for this sports news item.")
+    }
+
     override fun getEplNews(): Flow<Resource<List<NewsItem>>> = flow {
         emit(Resource.Loading)
 
@@ -42,10 +64,11 @@ class NewsRepositoryImpl(
                     val imageUrl = sanitizeUrl(imageUrlRaw)
                     val badgeUrl = sanitizeUrl(team.strBadge ?: team.strLogo)
                     val id = team.idTeam ?: ""
+                    val description = getLocalizedDescription(team)
                     NewsEntity(
                         id = id,
                         title = team.strTeam ?: "Unknown Team",
-                        description = team.strDescriptionEN ?: "No description available for this sports news item.",
+                        description = description,
                         imageUrl = imageUrl,
                         badgeUrl = badgeUrl,
                         stadium = team.strStadium ?: "Unknown Stadium",

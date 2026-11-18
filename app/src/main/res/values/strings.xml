@@ -16,7 +16,6 @@
     <string name="cancel">Cancel</string>
     <string name="title_favourite">Favourite</string>
     <string name="related_news">Related News</string>
-    <string name="installing_favourite_module">Installing Favourite module...</string>
     <string name="bookmark_added">Added to favourites</string>
     <string name="bookmark_removed">Removed from favourites</string>
 </resources>

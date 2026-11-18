@@ -16,7 +16,6 @@
     <string name="cancel">Cancelar</string>
     <string name="title_favourite">Favoritos</string>
     <string name="related_news">Noticias Relacionadas</string>
-    <string name="installing_favourite_module">Instalando módulo de Favoritos...</string>
     <string name="bookmark_added">Añadido a favoritos</string>
     <string name="bookmark_removed">Eliminado de favoritos</string>
 </resources>

@@ -1,19 +1,17 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-10:12
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-9:12
+INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:1-9:12
 	package
 		INJECTED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:1:11-69
 application
-ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:3:5-8:19
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:3:5-7:19
 activity#com.example.favourite.FavouriteActivity
-ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:4:9-7:62
+ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:4:9-6:40
 	android:exported
 		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:6:13-37
-	android:theme
-		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:7:13-59
 	android:name
 		ADDED from C:\Users\akmal\AndroidStudioProjects\DicosportbyArafin\favourite\src\main\AndroidManifest.xml:5:13-67
 uses-sdk

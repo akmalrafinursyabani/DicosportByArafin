@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Dicosport by Arafin</string>
+    <string name="search_hint">搜索体育新闻…</string>
+    <string name="no_internet">没有网络连接。请检查您的网络并重试。</string>
+    <string name="no_news_saved">暂无收藏的新闻。</string>
+    <string name="try_again">重试</string>
+    <string name="nav_favourite">收藏新闻</string>
+    <string name="nav_language">切换语言</string>
+    <string name="nav_theme">深色 / 浅色模式</string>
+    <string name="nav_exit">退出应用</string>
+    <string name="exit_title">退出应用</string>
+    <string name="exit_message">您确定要关闭 Dicosport 吗？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="remove_bookmark_title">从收藏中移除 %1$s？</string>
+    <string name="cancel">取消</string>
+    <string name="title_favourite">收藏</string>
+    <string name="related_news">相关新闻</string>
+    <string name="bookmark_added">已添加到收藏</string>
+    <string name="bookmark_removed">已从收藏中移除</string>
+</resources>

@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLanguageDialog() {
-        val languages = arrayOf("English", "Bahasa Indonesia", "Español")
-        val languageTags = arrayOf("en", "id", "es")
+        val languages = arrayOf("English", "中文 (Chinese)", "Español", "Français")
+        val languageTags = arrayOf("en", "zh", "es", "fr")
 
         AlertDialog.Builder(this)
             .setTitle(R.string.nav_language)
